@@ -1,0 +1,49 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:300);
+body {
+	background-color: #9acfea;
+	color:#1f1f1f;
+	margin: 5% 5% 10% 10%;
+	font-family: Raleway, sans-serif;
+}
+p.margin {
+	margin: 1em 5em 3em 5em;
+}
+.help-block {
+	color:#333333;
+}
+.form-control {
+	background-color:#9acfea;
+	border: 1px solid #1f1f1f;
+	color:#1f1f1f;
+}
+.form-control::-moz-placeholder {
+	color:#1f1f1f;
+}
+.btn-info {
+	background-color: #9acfea;
+	border-color: #1f1f1f;
+	color: #1f1f1f;
+	background-image: linear-gradient(to bottom, #9acfea 0px, #9acfea 100%);
+	background-repeat: repeat-x;
+}
+.btn-info:focus,.btn-info:hover {
+	background-color:#9acfea;
+}
+
+.chooseone:disabled {
+	color:#1f1f1f;
+}
+
+.inactive {
+	background-color:#dddddd;
+	color: #999999;
+}
+
+.danger {
+	color: #992222;
+}
+
+.modal .modal-body {
+	max-height: 420px;
+	overflow-y: auto;
+}

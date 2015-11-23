@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<link rel="icon" href="img/favicon.ico" type=”image/x-icon”>
+	<title>Driver Check Chicago</title>
+
+	<!-- Bootstrap -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+	<link href="css/index.css" rel="stylesheet">
+
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<h1 class="text-center">Driver Check - Chicago</h1>
+	<p class="text-center margin">Is your driver licensed by the City of Chicago?</p>
+
+	<form class="form-horizontal">
+		<fieldset>
+
+			<!-- Select Basic -->
+			<div class="form-group form-group-lg">
+				<label class="col-md-4 control-label" for="service">Service</label>
+				<div class="col-md-5">
+					<select id="service" name="service" class="form-control" required="">
+						<option class="chooseone" disabled selected >select one</option>
+						<option value="taxi">Taxi</option>
+						<option value="lyft">Lyft</option>
+						<option value="sidecar">Sidecar</option>
+						<option value="uberx">UberX</option>
+						<option value="uberxl">UberXL</option>
+						<option value="uberblack">UberBlack</option>
+						<option value="ubersuv">UberSUV</option>
+						<option value="uberselect">UberSelect</option>
+						<option value="ubertaxi">UberTaxi</option>
+					</select>
+					<span class="help-block">Select the driving service</span>
+				</div>
+			</div>
+
+			<!-- Text input-->
+			<div class="form-group form-group-lg">
+				<label class="col-md-4 control-label" for="lastname">Last Name</label>
+				<div class="col-md-5">
+					<input id="lastname" name="lastname" placeholder="Last Name" class="form-control" required="" type="text">
+					<span class="help-block">Enter your driver's last name</span>
+				</div>
+			</div>
+
+			<!-- Button -->
+			<div class="form-group form-group-lg">
+				<label class="col-md-4 control-label" for="submit"></label>
+				<div class="col-md-4">
+					<button id="submit" name="submit" class="btn btn-info btn-lg" onsubmit="searchForMatches">Search</button>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+
+	<p class="text-center"><small>&copy2015 Thomas Kompare | <a id="information">More Information</a></small></p>
+
+	<!-- Results Modal -->
+	<div class="modal fade" id="modal-search" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Licensed Public Chauffeurs</h4><span id="modal-results-service"></span>
+				</div>
+				<div id="modal-search-body" class="modal-body"></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Details Modal -->
+	<div class="modal fade" id="modal-details" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Driver Details</h4>
+				</div>
+				<div id="modal-details-body" class="modal-body">
+					<strong>Name/(Gender)</strong>: <span id="modal-details-name"></span><br>
+					<strong>License #</strong>: <span id="modal-details-license"></span><br>
+					<strong>License Type</strong>: <span id="modal-details-type"></span><br>
+					<strong>Status</strong>: <span id="modal-details-status"></span><br>
+					<strong>Last Status Update</strong>: <span id="modal-details-statusdate"></span><br>
+					<div id="modal-details-text"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Information Modal -->
+	<div class="modal fade" id="modal-information" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">More Information</h4>
+				</div>
+				<div id="modal-information-body" class="modal-body">
+					<p><strong>Driver Check - Chicago</strong> is a convenient way to look up if your car service driver has an active public chauffeur license issued by the City of Chicago. Some types of car services require an active license. <strong>Drive Check - Chicago</strong> does not check to see if a driver has a valid state issued driver's license.</p>
+					<p>There are two types of public chauffeur licenses the <strong>Driver Check - Chicago</strong> looks for, depending on the car service. For example, a driver offering taxi services requires an unrestricted public chauffeur license (a "taxi" license). A driver offering UberBlack requires a public chauffeur license that is either unrestricted or restricted (a "livery only" license).</p>
+					<p>If your chosen car service does not require a public chauffeur license, you may still be interested in checking to see if your driver has a public chauffeur license and its status.</p>
+					<p><strong>Driver Check - Chicago</strong> uses the <a href="https://data.cityofchicago.org/Community-Economic-Development/Public-Chauffeurs/97wa-y6ff" target="_blank">City of Chicago Data Portal</a> as its system of record to look up license status. For more information about public chauffeur licenses see the links below:</p>
+					<div>
+						* <a href="http://www.cityofchicago.org/city/en/depts/bacp/supp_info/public_chauffeurinformation.html" target="_blank">Chicago Department of Business Affairs and Consumer Protection</a><br>
+						* <a href="http://www.cityofchicago.org/content/dam/city/depts/bacp/publicvehicleinfo/publicchauffer/oliveharveychauffeurtraininginstitutebrochure.pdf" target="_blank">Olive-Harvey College Public Chauffeur Brochure</a><br>
+						* <a href="http://www.chicagochauffeurlicense.com/" target="_blank">Chicago Chauffeur License - Community Portal</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/index.js"></script>
+</body>
+</html>
